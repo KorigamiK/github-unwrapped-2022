@@ -5,6 +5,16 @@
 
 A platform that generates a year in review video for each GitHub user. Built with Next.JS, Remotion and AWS Lambda.
 
+## Customize your wrapped!
+
+Artificially alter your GitHub activity for your year in review video:
+
+- **Open `remotion/Root.tsx`**: 
+  - Change your username to yours.
+  - Read the comments in the file to learn how to customize your video.
+  - Uncomment and comment as needed.
+- **Change executable path**: Open `remotion.config.ts` and change the `setBrowserExecutable` to your chrome executable path.
+
 ## Make your own
 
 Want to make your own year in review for your users?
