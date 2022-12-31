@@ -1,8 +1,6 @@
 import React from 'react';
 import { Composition, Folder, Still } from 'remotion';
 import { COMP_NAME, DURATION, OG_COMP_NAME } from '../src/config';
-import { backendResponseToBackendStats, getAll } from '../src/get-all';
-import { getRandomGithubToken } from '../src/get-random-github-token';
 import { getTimesOfDay } from '../src/get-times-of-day';
 import { AvatarFrame } from './AvatarFrame';
 import { AvgCommits } from './AvgCommits';
@@ -10,8 +8,6 @@ import { BestCommits } from './BestCommits';
 import { Commit } from './Commit';
 import { EndCard } from './EndCard';
 import { Flashcard } from './Flashcard';
-import { Commit as ICommit } from './frontend-stats';
-import { getALotOfGithubCommits } from './github-api';
 import { GithubComp } from './GithubComp';
 import { GithubPromo } from './GithubPromo';
 import { Logo } from './Icons/Logo';
@@ -45,7 +41,7 @@ import { Vue } from './Languages/Vue';
 import { LanguageToSocks } from './LanguageToSocks';
 import { Loader } from './Loader';
 import { Main } from './Main';
-import { BackendStats, mapResponseToStats } from './map-response-to-stats';
+import { mapResponseToStats } from './map-response-to-stats';
 import { OG } from './og/Og';
 import { Snow } from './Snow';
 import { SockComp } from './SockComp';
@@ -60,14 +56,33 @@ import { TreeGithub } from './TreeGithub';
 import { Unwrap } from './Unwrap';
 import { WallHanger } from './WallHanger';
 
-const USERNAME = 'KorigamiK'
+// Uncomment to use the real data for preview
+/*
+import { backendResponseToBackendStats, getAll } from '../src/get-all';
+import { getRandomGithubToken } from '../src/get-random-github-token';
+import { Commit as ICommit } from './frontend-stats';
+import { getALotOfGithubCommits } from './github-api';
+import { BackendStats } from './map-response-to-stats';
+*/
+
+// Unomment to use the data from file for rendering
+// Update the data to yours by pasting the data from the console while in preview mode
+// /*
+import { all } from './all'
+import { commits } from './commits'
+// */
+
+// Customization options
+// const USERNAME = 'KorigamiK'
 const artificiallySubstituteLanguage = [{ from: 'CSS', to: 'TeX' }]
 const artificiallyClosedIssues = 6
 const artificiallyOpenIssues = 3
 
 
-
 export const Root: React.FC = () => {
+
+	// Uncomment to use the real data for preview
+	/* 
 	const [loading, setLoading] = React.useState(true);
 	const [allLoading, setAllLoading] = React.useState(true);
 	const [commits, setCommits] = React.useState<ICommit[]>([]);
@@ -96,15 +111,31 @@ export const Root: React.FC = () => {
 				backendResponse.issues.closed = artificiallyClosedIssues
 
 				setAll(backendResponse);
-				console.log(all);
+				console.log(backendResponse);
 				setAllLoading(false);
 			}
 			);
 	}, []);
+	*/
+
+	// /*
+	// Unomment to use saved data from file for rendering
+	for (const { from, to } of artificiallySubstituteLanguage) {
+		const idx = all.topLanguages?.findIndex(l => l.name === from)
+		console.log(idx, from, to)
+		if (idx !== undefined && idx !== -1)
+			all.topLanguages![idx].name = to
+	}
+
+	all.issues.open = artificiallyOpenIssues
+	all.issues.closed = artificiallyClosedIssues
+	// */
 
 	return (
 		<>
-			{loading || allLoading ? <div>loading...</div> :
+			{
+				// Uncomment to use real data for preview
+				// loading || allLoading ? <div>loading...</div> :
 				<>
 
 					<Composition

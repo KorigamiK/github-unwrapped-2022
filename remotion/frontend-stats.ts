@@ -6,7 +6,7 @@ export type Commit = {
 };
 
 export type PullRequest = {
-	uniqueId: string;
+	uniqueId?: string;
 	title: string;
 	organization: string;
 	repository: string;
