@@ -14,6 +14,7 @@ Artificially alter your GitHub activity for your year in review video:
   - Read the comments in the file to learn how to customize your video.
   - Uncomment and comment as needed.
 - **Change executable path**: Open `remotion.config.ts` and change the `setBrowserExecutable` to your chrome executable path.
+- **Add a PAT**: Create a `.env` and add a GitHub Personal Access Token (not Fine Grained Access Token) as `GITHUB_TOKEN_1`.
 
 ## Make your own
 
