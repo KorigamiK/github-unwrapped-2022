@@ -8,7 +8,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"preview": "npx remotion preview remotion/index.tsx",
-		"render": "npx remotion render remotion/index.tsx main out/unwrapped.mp4",
+		"render": "npx remotion render main-blue out/unwrapped.mp4",
 		"deploy-functions": "ts-node deploy.ts"
 	},
 	"license": "MIT",
