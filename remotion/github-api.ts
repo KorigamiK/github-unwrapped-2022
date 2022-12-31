@@ -1,12 +1,12 @@
-import type {commits} from './commits';
-import {Commit} from './frontend-stats';
-import {mapApiResponseToCommits} from './map-api-response-to-commits';
+import type { commits } from './commits';
+import { Commit } from './frontend-stats';
+import { mapApiResponseToCommits } from './map-api-response-to-commits';
 
 export const RATE_LIMIT_TOKEN = 'rate-limit-token';
 
 export const getGithubCommits = async (username: string, page: number) => {
 	const response = await fetch(
-		`https://api.github.com/search/commits?q=author:${username}%20merge:false&sort=author-date&order=desc&page=${page}&per_page=100`
+		`https://api.github.com/search/commits?q=author:${ username }%20merge:false&sort=author-date&order=desc&page=${ page }&per_page=100`
 	);
 	if (response.status !== 200) {
 		// TODO: Distinguish between 404 and rate limit
@@ -21,7 +21,7 @@ export const getGithubCommits = async (username: string, page: number) => {
 	const isDone =
 		listOfCommits.length === 0 ||
 		listOfCommits[listOfCommits.length - 1].date <
-			new Date('2022-01-01').getTime();
+		new Date('2022-01-01').getTime();
 	return {
 		commits: listOfCommits,
 		isDone,
@@ -31,10 +31,10 @@ export const getGithubCommits = async (username: string, page: number) => {
 export const getALotOfGithubCommits = async (username: string) => {
 	let listOfCommits: Commit[] = [];
 
-	let pages = [1, 2, 3, 4, 5];
+	let pages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 	for (const page of pages) {
-		const {commits, isDone} = await getGithubCommits(username, page);
+		const { commits, isDone } = await getGithubCommits(username, page);
 		listOfCommits.push(...commits);
 		if (isDone) {
 			break;
