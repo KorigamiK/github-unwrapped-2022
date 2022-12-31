@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import {
 	AbsoluteFill,
 	interpolate,
@@ -6,17 +6,17 @@ import {
 	useCurrentFrame,
 	useVideoConfig,
 } from 'remotion';
-import {Bauble} from '../src/components/Bauble';
-import {Candy} from './Icons/Candy';
-import {Snow} from './Snow';
-import {Theme} from './theme';
+import { Bauble } from '../src/components/Bauble';
+import { Candy } from './Icons/Candy';
+import { Snow } from './Snow';
+import { Theme } from './theme';
 
 export const EndCard: React.FC<{
 	noBackground: boolean;
 	theme: Theme;
-}> = ({noBackground, theme}) => {
+}> = ({ noBackground, theme }) => {
 	const frame = useCurrentFrame() - 30;
-	const {fps, height, width} = useVideoConfig();
+	const { fps, height, width } = useVideoConfig();
 	const y = interpolate(frame, [0, 40], [-1000, 600]);
 
 	const rotate = interpolate(frame, [0, 40], [0, -180]) + 170;
@@ -101,12 +101,12 @@ export const EndCard: React.FC<{
 						height,
 					}}
 				>
-					<div style={{...endCardStyle}}>GitHubUnwrapped.com</div>
+					<div style={{ ...endCardStyle }}>/KorigamiK/github-unwrapped-2022</div>
 				</AbsoluteFill>
 			</AbsoluteFill>
 			<AbsoluteFill
 				style={{
-					transform: `translateX(30px) translateY(${y}px) rotate(${rotate}deg)`,
+					transform: `translateX(30px) translateY(${ y }px) rotate(${ rotate }deg)`,
 				}}
 			>
 				<Candy theme={theme}></Candy>
